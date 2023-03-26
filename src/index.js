@@ -101,19 +101,14 @@ async function addImage() {
   }
 }
 
-// scroll//
+//scroll//
+
 
 function onPageScrolling() {
   const { height: cardHeight } =
     wrapperGalery.firstElementChild.getBoundingClientRect();
-  const { scrollTop, clientHeight, scrollHeight } = wrapperGalery;
-  const isEnd = scrollTop + clientHeight === scrollHeight;
   window.scrollBy({
     top: cardHeight * 2,
     behavior: 'smooth',
   });
-  loadMore.hidden = isEnd;
-   Notiflix.Notify.info(
-    "We're sorry, but you've reached the end of search results."
-   );
 }
