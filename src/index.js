@@ -70,15 +70,15 @@ async function fetchThen(value) {
     loadMore.hidden = false; // +
 
     if (myArr.length < 40) {
-      loadMore.hidden = true; // -
+      loadMore.hidden = true;
     }
     if (myNumber === myArr.length) {
       Notiflix.Notify.info(
         "We're sorry, but you've reached the end of search results."
       );
       loadMore.hidden = true;
-      return;
-    }
+      // return;
+      }
   } catch (error) {
     console.log(error);
   }
@@ -117,4 +117,8 @@ function onPageScrolling() {
     top: cardHeight * 2,
     behavior: 'smooth',
   });
+  loadMore.hidden = true;
+  Notiflix.Notify.info(
+    "We're sorry, but you've reached the end of search results."
+  );
 }
