@@ -41,7 +41,7 @@ async function onSubmit(event) {
   return await fetchThen(myValue);
 }
 
-// loadMore.hidden = false   // +
+
 loadMore.hidden = true; // -
 
 // request//
@@ -72,13 +72,6 @@ async function fetchThen(value) {
     if (myArr.length < 40) {
       loadMore.hidden = true;
     }
-    if (myNumber === myArr.length) {
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
-      loadMore.hidden = true;
-      // return;
-      }
   } catch (error) {
     console.log(error);
   }
@@ -113,12 +106,14 @@ async function addImage() {
 function onPageScrolling() {
   const { height: cardHeight } =
     wrapperGalery.firstElementChild.getBoundingClientRect();
+  const { scrollTop, clientHeight, scrollHeight } = wrapperGalery;
+  const isEnd = scrollTop + clientHeight === scrollHeight;
   window.scrollBy({
     top: cardHeight * 2,
     behavior: 'smooth',
   });
-  loadMore.hidden = true;
-  Notiflix.Notify.info(
+  loadMore.hidden = isEnd;
+   Notiflix.Notify.info(
     "We're sorry, but you've reached the end of search results."
-  );
+   );
 }
